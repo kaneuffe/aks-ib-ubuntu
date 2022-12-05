@@ -94,7 +94,7 @@ data:
     # will install systemd units and host dependencies.
     SECONDS=0
     cd /opt/debs 
-    echo "deb [trusted=yes] https://azurehpc.azureedge.net/aks/ubuntu2204 ./" > /etc/apt/sources.list.d/mlnx_ofed.list
+    echo "deb [trusted=yes] https://azurehpc.azureedge.net/aks/ubuntu2204/5.15.0-1022-azure ./" > /etc/apt/sources.list.d/mlnx_ofed.list
     apt-get update
     kernel_version=$(uname -r)
     apt-get install -y mlnx-ofed-kernel-only-${kernel_version}   
@@ -110,7 +110,7 @@ data:
       echo "driver installation failed"
       exit 1
     else
-     echo "driver installation successful"
+      echo "driver installation successful"
     fi
     echo "installation completed in $SECONDS seconds"
 
