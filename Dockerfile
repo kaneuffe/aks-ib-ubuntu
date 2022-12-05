@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as debs
+FROM ubuntu:22.04 as debs
 
 WORKDIR /opt/debs
 USER root
