@@ -99,11 +99,17 @@ data:
     kernel_version=$(uname -r)
     apt-get install -y mlnx-ofed-kernel-only-${kernel_version}   
     /etc/init.d/openibd restart
+
+    # rename IPoIB device  
+    ipoib_dev=$(ip a | grep ibP | head -n 1 | awk '{print $2}' |sed 's/://g')
+    ip link set $ipoib_dev name ib0
+
+
     set -x
   
     ulimit -l unlimited
     ulimit -a
-    check_ib="$(ip link | grep ib)"
+    check_ib="$(ip link | grep ib0)"
     
     if [ -z "$check_ib" ];
     then
@@ -129,7 +135,11 @@ data:
     /etc/init.d/openibd restart
     set -x
 
-    check_ib="$(ip link | grep ib)"
+    # rename IPoIB device  
+    ipoib_dev=$(ip a | grep ibP | head -n 1 | awk '{print $2}' |sed 's/://g')
+    ip link set $ipoib_dev name ib0
+
+    check_ib="$(ip link | grep ib0)"
 
     if [ -z "$check_ib" ];
     then
