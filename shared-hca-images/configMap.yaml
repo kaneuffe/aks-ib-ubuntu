@@ -11,8 +11,9 @@ data:
              "resourceName": "shared_hca_rdma",
              "resourcePrefix": "mellanox.com",
              "rdmaHcaMax": 1,
-             "devices": ["ib0"]
-           }]
+             "selectors": {
+               "linkTypes": ["infiniband"]
+              }
+         }]
     }
 # Note: increase rdmaHcaMax to number of pods deployed on each node if greater than 1
-  
